@@ -1,9 +1,11 @@
 import { useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import ProfileSetup from "./pages/ProfileSetup";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [page, setPage] = useState("login");
+  const [user, setUser] = useState(null);
 
   return (
     <>
@@ -17,16 +19,10 @@ function App() {
         <ProfileSetup onSuccess={() => setPage("dashboard")} />
       )}
       {page === "dashboard" && (
-        <div style={{
-          minHeight:"100vh",
-          background:"linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)",
-          display:"flex", alignItems:"center", justifyContent:"center",
-          color:"#fff", fontSize:24, fontFamily:"Georgia,serif",
-        }}>
-          🚧 Dashboard coming soon...
-        </div>
+        <Dashboard user={user || { name: "Jane Doe", role: "student", institution: "MIT" }} />
       )}
     </>
   );
 }
+
 export default App;
